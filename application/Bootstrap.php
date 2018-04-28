@@ -14,12 +14,16 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 use Illuminate\Events\Dispatcher as EventDispatcher;
 use Illuminate\Container\Container;
 
-class Bootstrap extends Yaf\Bootstrap_Abstract {
+class Bootstrap extends Yaf\Bootstrap_Abstract
+{
 
-    public function _initConfig() {
+    protected $config;
+
+    public function _initConfig()
+    {
 		//把配置保存起来
-		$arrConfig = Application::app()->getConfig()->toArray();
-		Yaf\Registry::set('config', $arrConfig);
+		$this->config = Application::app()->getConfig()->toArray();
+		Yaf\Registry::set('config', $this->config);
 	}
 
 	public function _initPlugin(Yaf\Dispatcher $dispatcher) {
@@ -50,14 +54,12 @@ class Bootstrap extends Yaf\Bootstrap_Abstract {
     {
         $capsule = new Capsule();
 
-        $capsule->addConnection([
-            Yaf\Registry::get('config')['database']
-        ]);
-
+        $db = $this->config['database'];
+        $capsule->addConnection($db);
         $capsule->setEventDispatcher(new EventDispatcher(new Container()));
-
         $capsule->setAsGlobal();
-
         $capsule->bootEloquent();
+
+        class_alias(\Illuminate\Database\Capsule\Manager::class, 'DB');
 	}
 }
