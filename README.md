@@ -9,4 +9,4 @@
 ## 更多
 
 更多可以看这个 [yaf-skeleton](https://github.com/qloog/yaf-skeleton)
-包含依赖注入,容易,缓存,日志等更多内容
+包含依赖注入,容器,缓存,日志等更多内容
