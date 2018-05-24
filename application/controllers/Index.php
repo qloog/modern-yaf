@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @name IndexController
  * @author qloog
@@ -8,8 +9,7 @@
 class IndexController extends Yaf\Controller_Abstract 
 {
 
-
-    public function dbAction()
+    public function indexAction()
     {
         //$user = UserModel::find(1);
         //
@@ -20,8 +20,8 @@ class IndexController extends Yaf\Controller_Abstract
         //
         //var_dump($ret);
 
-        $user2 = DB::table('users')->find(2);
+        $list = UserModel::paginate(10);
 
-        var_dump($user2->email);
+        return view('index.index', compact('list'));
     }
 }
