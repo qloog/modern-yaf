@@ -4,7 +4,7 @@
 
 ## 视频教程
 
-[教程地址](https://phpcasts.org/courses/creating-a-modern-yaf-framework-step-by-step)
+[教程地址](https://1024casts.com/courses/creating-a-modern-yaf-framework-step-by-step)
 
 ## 更多
 
